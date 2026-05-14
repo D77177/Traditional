@@ -1,8 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+
+import {
+  onAuthStateChanged,
+  User,
+} from "firebase/auth";
+
 import { auth } from "@/lib/firebase";
+
 import { useRouter } from "next/navigation";
 
 export default function AuthGuard({
@@ -10,20 +16,31 @@ export default function AuthGuard({
 }: {
   children: React.ReactNode;
 }) {
-  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  const [user, setUser] = useState<User | null>(
+    null
+  );
+
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        router.push("/login");
-      } else {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (currentUser) => {
+        setUser(currentUser);
         setLoading(false);
       }
-    });
+    );
 
     return () => unsubscribe();
-  }, [router]);
+  }, []);
+
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push("/login");
+    }
+  }, [loading, user, router]);
 
   if (loading) {
     return (
@@ -32,6 +49,8 @@ export default function AuthGuard({
       </div>
     );
   }
+
+  if (!user) return null;
 
   return <>{children}</>;
 }
