@@ -1,49 +1,66 @@
 "use client";
-export const dynamic = "force-dynamic";
+
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter();
 
   const handleLogin = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      alert("Login successful");
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
       router.push("/admin");
-    } catch (err: any) {
-      alert(err.message);
+    } catch (error) {
+      console.error(error);
+      alert("Invalid credentials");
     }
   };
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gray-100">
-      <div className="p-8 bg-white border rounded-xl w-80">
-        <h1 className="text-2xl font-bold mb-4">Admin Login</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white p-8 rounded-3xl shadow-lg w-full max-w-md">
+        <h1 className="text-3xl font-bold mb-6 text-center">
+          Admin Login
+        </h1>
 
-        <input
-          className="w-full border p-2 mb-3"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <div className="space-y-4">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
+            className="w-full border p-3 rounded-xl"
+          />
 
-        <input
-          className="w-full border p-2 mb-3"
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) =>
+              setPassword(e.target.value)
+            }
+            className="w-full border p-3 rounded-xl"
+          />
 
-        <button
-          onClick={handleLogin}
-          className="w-full bg-black text-white p-2 rounded"
-        >
-          Login
-        </button>
+          <button
+            onClick={handleLogin}
+            className="w-full bg-black text-white py-3 rounded-xl"
+          >
+            Login
+          </button>
+        </div>
       </div>
     </div>
   );
