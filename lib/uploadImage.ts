@@ -8,7 +8,7 @@ export const uploadImage = async (file: File) => {
   formData.append("upload_preset", "unsigned_upload");
 
   const res = await fetch(
-    `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+    `https://api.cloudinary.com/v1_1/${dhsca0ieo}/image/upload`,
     {
       method: "POST",
       body: formData,
