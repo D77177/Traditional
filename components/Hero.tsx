@@ -20,7 +20,7 @@ export default function Hero() {
         className="relative z-10 text-white px-6"
       >
         <h1 className="text-4xl md:text-6xl font-bold">
-          Timeless Ethiopian Traditional Fashion
+          Timeless Ethiopian Traditional Fashion Design To Satisfy
         </h1>
 
         <p className="mt-4 text-lg text-gray-200">
