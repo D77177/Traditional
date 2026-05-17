@@ -21,6 +21,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
 
   const handleUpload = async () => {
+    alert("Button clicked");
     try {
       if (!image) {
         alert("Please select an image");
@@ -126,6 +127,7 @@ export default function AdminPage() {
           />
 
           <button
+            type="button"
             onClick={handleUpload}
             disabled={loading}
             className="w-full bg-black text-white py-4 rounded-xl"
