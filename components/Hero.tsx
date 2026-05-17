@@ -8,7 +8,7 @@ export default function Hero() {
       className="relative h-[90vh] flex items-center justify-center text-center bg-cover bg-center"
       style={{
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=2000&q=80')",
+          "url('https://www.bing.com/images/search?view=detailV2&ccid=DKdZlIrz&id=14CF43B8A5AEE01E824FC229A3FE7A7582224315&thid=OIP.DKdZlIrz1VlDIJkwRZODzQHaI-&mediaurl=https%3a%2f%2fethiopiantraditionaldress.com%2fwp-content%2fuploads%2f2022%2f12%2fBurgendy-Crowning-Kaba-Set-2-1.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.0ca759948af3d55943209930459383cd%3frik%3dFUMignV6%252fqMpwg%26pid%3dImgRaw%26r%3d0&exph=873&expw=720&q=ethiopian+traditional+dress&FORM=IRPRST&ck=E27798FEF6F13B5770EB6DD58E5CC9AD&selectedIndex=3&itb=0')",
       }}
     >
       <div className="absolute inset-0 bg-black/60"></div>
